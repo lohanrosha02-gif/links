@@ -306,5 +306,10 @@ dialog{background:#fff;color:#1a271c;border-color:#dce7d8;box-shadow:0 26px 85px
     setInterval(()=>{if(!document.hidden)sync()},5*60*1000);
     document.addEventListener("visibilitychange",()=>{if(!document.hidden&&cloudOk)sync()});
   </script>
+
+  <!-- Sincronização opcional de dados privados em diferentes dispositivos -->
+  <script src="cloud-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="device-sync.js"></script>
 </body>
 </html>
