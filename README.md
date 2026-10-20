@@ -41,3 +41,12 @@ Para adicionar um site a um repositório, abra as configurações do repositóri
 Links adicionados diretamente no botão **Adicionar link** são salvos somente no navegador atual (localStorage). Para ficarem visíveis em todos os aparelhos, copie-os para `links.json`, salve a alteração no GitHub e atualize a página. É possível exportar/importar um backup dos links locais.
 
 A página não precisa de token nem senha de GitHub. Repositórios privados não são listados.
+
+## Correções de 20/10/2026
+
+- Tema claro com fundo branco e detalhes verde-limão.
+- Todos os seis sites foram cadastrados explicitamente em [`links.json`](./links.json).
+- A Central de Links também consulta o endpoint público `/repos/OWNER/REPO/pages` do GitHub para descobrir o endereço oficial do GitHub Pages, inclusive domínio personalizado, quando disponível. A consulta ocorre no máximo uma vez por hora enquanto a página estiver aberta.
+- Não são mais inventados URLs de sites de novos repositórios apenas a partir do nome. Se não houver um endereço informado, aparece somente o link do repositório, com opção de associar um site.
+- Abaixo de cada projeto é mostrado o endereço de destino para facilitar a conferência e edição.
+- A disponibilidade pública de cada endereço depende de sua implantação no serviço de hospedagem.
