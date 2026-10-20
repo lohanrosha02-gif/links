@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0c0f11">
+  <meta name="description" content="Central de links, sites e projetos do GitHub.">
+  <title>Meus Links | Central de Projetos</title>
+  <style>
+    :root{--bg:#0c0f11;--panel:#141819;--panel2:#191e20;--border:#293132;--text:#f3f7f4;--muted:#98a5a0;--lime:#c0f16e;--radius:20px;--shadow:0 18px 55px rgba(0,0,0,.17)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.48}
+    button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+    .layout{max-width:1470px;margin:auto;display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
+    .sidebar{border-right:1px solid var(--border);padding:36px 23px;display:flex;flex-direction:column;gap:35px}
+    .brand{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:850;letter-spacing:-.5px}.brand-mark{width:42px;height:42px;border-radius:13px;background:var(--lime);display:grid;place-items:center;color:#142010;font-weight:950;font-size:19px}
+    .side-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#66766e;font-weight:800;padding-left:13px;margin-bottom:10px}
+    .nav{display:grid;gap:6px}.nav-button{appearance:none;border:0;background:none;color:var(--muted);padding:12px 13px;display:flex;align-items:center;gap:13px;border-radius:11px;text-align:left;font-size:14px;font-weight:650}
+    .nav-button svg{width:18px;height:18px;stroke-width:1.9}.nav-button.active{background:#232b24;color:var(--lime)}.nav-button:hover{background:#1c2422;color:var(--text)}
+    .sidebar-bottom{margin-top:auto;padding:16px;border:1px solid var(--border);border-radius:16px;background:#121717}.side-avatar{width:34px;height:34px;border-radius:10px;background:#2b3b2e;display:grid;place-items:center;color:var(--lime);font-weight:800}
+    .sidebar-bottom p{font-size:12px;color:var(--muted);margin:9px 0 12px;line-height:1.6}.side-link{font-size:12px;font-weight:800;color:var(--lime)}
+    .main{padding:30px clamp(22px,4.7vw,70px) 54px;min-width:0}
+    .topline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:30px}
+    .breadcrumb{font-size:13px;color:var(--muted)}.breadcrumb span{color:#e8f1e9}.top-actions{display:flex;gap:9px;align-items:center}
+    .icon-btn{width:41px;height:41px;border:1px solid var(--border);background:var(--panel);color:#d7e6d9;border-radius:11px;display:grid;place-items:center}.icon-btn:hover{background:#263128}.icon-btn svg{width:18px}
+    .hero{background:linear-gradient(115deg,#1e2b25 0%,#18201d 45%,#1c2426 100%);border:1px solid #34453b;border-radius:25px;padding:clamp(26px,4.2vw,45px);position:relative;overflow:hidden}
+    .hero:before{content:"";position:absolute;width:310px;height:310px;border-radius:50%;background:radial-gradient(circle,rgba(192,241,110,.15),transparent 69%);right:-40px;top:-110px;pointer-events:none}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:850;letter-spacing:1.2px;text-transform:uppercase;color:var(--lime)}.eyebrow:before{content:"";width:7px;height:7px;background:var(--lime);border-radius:50%}
+    h1{font-size:clamp(30px,4.3vw,50px);letter-spacing:-2.3px;line-height:1.06;margin:19px 0 15px;max-width:660px;font-weight:850}h1 em{font-style:normal;color:var(--lime)}
+    .hero p{max-width:555px;font-size:14px;color:#b6c4bb;margin:0 0 23px;line-height:1.8}.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .primary,.secondary{border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 17px;border-radius:11px;font-weight:800;font-size:13px;transition:.16s}
+    .primary{background:var(--lime);color:#1a2412}.primary:hover{background:#d5ff95;transform:translateY(-1px)}.secondary{background:rgba(255,255,255,.045);color:#e9f3e9;border-color:#425046}.secondary:hover{background:rgba(255,255,255,.10)}
+    .primary svg,.secondary svg{width:16px;height:16px}
+    .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:21px 0 34px}.metric{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px 20px}.metric strong{font-size:29px;font-weight:850;letter-spacing:-1px;display:block;line-height:1.15}.metric span{font-size:12px;color:var(--muted);display:block;margin-top:6px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:3px 0 17px}.section-head h2{font-size:22px;letter-spacing:-.8px;margin:0}.section-head p{font-size:12px;color:var(--muted);margin:3px 0 0}
+    .sync-state{font-size:11px;color:var(--muted);display:inline-flex;align-items:center;gap:8px}.sync-dot{width:7px;height:7px;background:#93c95b;border-radius:50%;flex-shrink:0}.sync-dot.error{background:#f0ae6e}
+    .toolbar{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}.tabs{display:flex;gap:5px;background:var(--panel);padding:5px;border-radius:12px;border:1px solid var(--border);flex-wrap:wrap}
+    .tab{padding:9px 13px;background:none;color:var(--muted);border:0;border-radius:8px;font-size:12px;font-weight:800;white-space:nowrap}.tab.active{background:#303a32;color:var(--lime)}.tab:hover:not(.active){color:#fff}
+    .search-wrap{min-width:200px;max-width:310px;flex:1;position:relative}.search-wrap svg{width:17px;position:absolute;top:12px;left:13px;color:var(--muted)}.search{height:43px;background:var(--panel);border:1px solid var(--border);border-radius:11px;color:#fff;width:100%;padding:0 12px 0 41px;font-size:13px}.search::placeholder{color:#788580}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.project{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:21px;display:flex;flex-direction:column;gap:13px;min-width:0;transition:transform .16s,border-color .16s}.project:hover{border-color:#496344;transform:translateY(-2px)}
+    .card-top{display:flex;justify-content:space-between;gap:11px;align-items:flex-start}.app-icon{width:46px;height:46px;flex-shrink:0;display:grid;place-items:center;font-weight:850;border-radius:14px;font-size:16px;letter-spacing:-.8px}
+    .app-icon.green{background:#2e422c;color:#beee79}.app-icon.blue{background:#293649;color:#a2c4ff}.app-icon.gold{background:#3d3726;color:#f1d492}.app-icon.purple{background:#342e47;color:#d2b5ff}.app-icon.teal{background:#25423d;color:#89e2cf}.app-icon.gray{background:#343a3c;color:#cbd5d6}
+    .tag{font-size:10px;font-weight:800;color:#a6b4ad;border:1px solid #35413b;border-radius:50px;padding:5px 10px;white-space:nowrap}.tag.site{color:var(--lime);border-color:#47623e;background:#263527}
+    .project h3{font-size:16px;letter-spacing:-.4px;margin:0 0 5px;line-height:1.25}.project .desc{font-size:12px;color:var(--muted);margin:0;line-height:1.65;min-height:38px;overflow-wrap:anywhere}
+    .card-foot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:auto;padding-top:5px}.card-link{font-size:12px;font-weight:800;padding:9px 12px;border:1px solid #39443e;border-radius:9px;background:#202826;color:#e4f0e4;display:inline-flex;gap:7px;align-items:center}.card-link:hover{background:#313d35}.card-link.highlight{background:var(--lime);color:#182311;border-color:var(--lime)}.card-link.highlight:hover{background:#d4ff90}.card-link svg{width:14px;height:14px}
+    .text-button{border:0;background:transparent;padding:8px 2px;font-size:11px;color:#9db391;font-weight:800}.text-button:hover{color:var(--lime)}
+    .empty{grid-column:1/-1;min-height:205px;display:grid;place-content:center;text-align:center;border:1px dashed #39423f;border-radius:16px;color:var(--muted);padding:24px}.empty strong{color:#e5eee8;font-size:16px}.empty p{font-size:12px}
+    .custom-block{margin-top:32px;border-top:1px solid var(--border);padding-top:27px}.custom-actions{display:flex;flex-wrap:wrap;gap:9px}.tiny{padding:9px 12px;font-size:12px}
+    .help-strip{margin-top:30px;border:1px solid #2f4235;background:#161e19;border-radius:15px;padding:17px 20px;display:flex;justify-content:space-between;align-items:center;gap:13px}.help-strip h3{font-size:13px;margin:0 0 4px}.help-strip p{font-size:12px;color:var(--muted);margin:0;line-height:1.55}.help-strip a{white-space:nowrap;color:var(--lime);font-size:12px;font-weight:800}
+    footer{font-size:11px;color:#78867f;text-align:center;margin-top:45px}
+    dialog{background:#171e1b;color:var(--text);border:1px solid #455249;border-radius:22px;padding:0;max-width:min(440px,calc(100vw - 28px));width:100%;box-shadow:0 26px 95px rgba(0,0,0,.6)}
+    dialog::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(5px)}.modal-head{display:flex;justify-content:space-between;align-items:center;padding:24px 25px 12px}.modal-head h2{font-size:20px;margin:0;letter-spacing:-.6px}
+    .modal-body{padding:0 25px 25px}.modal-body label{display:block;font-size:12px;color:#ced9cf;font-weight:700;margin-top:15px;margin-bottom:6px}
+    .modal-body input,.modal-body select{width:100%;height:43px;padding:0 12px;border-radius:10px;background:#0f1512;color:#eaf4e9;border:1px solid #39483e;font-size:13px}.modal-body input::placeholder{color:#728278}
+    .modal-note{font-size:11px;color:#9dac9f;line-height:1.65;margin:13px 0}.modal-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:22px}
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    #toast{position:fixed;bottom:24px;right:24px;padding:12px 17px;border:1px solid #4c634a;background:#253527;color:#e7f5de;border-radius:11px;box-shadow:var(--shadow);font-size:12px;z-index:30;max-width:320px;opacity:0;pointer-events:none;transform:translateY(10px);transition:.2s}
+    #toast.show{opacity:1;transform:translateY(0)}
+    @media(max-width:1100px){.layout{grid-template-columns:190px 1fr}.sidebar{padding:27px 15px}.main{padding:27px 28px 44px}.grid{gap:12px}}
+    @media(max-width:760px){.layout{display:block}.sidebar{position:static;border-right:0;border-bottom:1px solid var(--border);padding:15px 18px;gap:11px}.brand{font-size:14px}.brand-mark{width:35px;height:35px;border-radius:10px}.side-label,.sidebar-bottom{display:none}.nav{display:flex;gap:4px;overflow:auto}.nav-button{padding:9px 12px;font-size:12px;white-space:nowrap}.nav-button svg{width:15px;height:15px}.main{padding:20px 17px 40px}.topline{margin-bottom:20px}.metrics{gap:8px;margin:14px 0 28px}.metric{padding:14px 12px}.metric strong{font-size:23px}.metric span{font-size:10px}.hero{padding:25px 23px}.hero p{font-size:12px}.hero h1{letter-spacing:-1.4px}.toolbar{flex-direction:column-reverse}.search-wrap{max-width:none;width:100%;flex:auto}.tabs{align-self:stretch;justify-content:space-between}.tab{padding:9px 10px}.grid{grid-template-columns:1fr}.help-strip{align-items:flex-start;flex-direction:column}.section-head h2{font-size:20px}.project{padding:19px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="sr-only" aria-hidden="true">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M10 14 20 4M20 14v6H4V4h6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8m0-5v5h5M4 13a8 8 0 0 0 14 5l2-2m0 5v-5h-5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+  </svg>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="./" aria-label="Página inicial dos meus links"><span class="brand-mark">L.</span><span>meus<span style="color:var(--lime)">links</span></span></a>
+      <div>
+        <div class="side-label">Navegação</div>
+        <nav class="nav" id="sideNav">
+          <button class="nav-button active" data-filter="todos"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-grid"/></svg> Visão geral</button>
+          <button class="nav-button" data-filter="sites"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-globe"/></svg> Sites</button>
+          <button class="nav-button" data-filter="repos"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-code"/></svg> Repositórios</button>
+          <button class="nav-button" data-filter="extras"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-link"/></svg> Outros links</button>
+        </nav>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="side-avatar">GH</div>
+        <p>Conectado aos repositórios <strong style="color:#e9f2e9">públicos</strong> de lohanrosha02-gif.</p>
+        <a class="side-link" href="https://github.com/lohanrosha02-gif" target="_blank" rel="noopener noreferrer">Ver perfil GitHub ↗</a>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topline">
+        <div class="breadcrumb">Meu espaço <span>/ Central de links</span></div>
+        <div class="top-actions">
+          <button class="icon-btn" id="syncBtn" title="Atualizar do GitHub" aria-label="Atualizar do GitHub"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-refresh"/></svg></button>
+          <a class="icon-btn" href="https://github.com/lohanrosha02-gif" title="Meu GitHub" aria-label="Abrir GitHub" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-code"/></svg></a>
+        </div>
+      </header>
+      <section class="hero">
+        <div class="eyebrow">Minha central digital</div>
+        <h1>Todos os meus links.<br><em>Um só lugar.</em></h1>
+        <p>Acesse meus sites, explore meus projetos no GitHub e guarde seus links favoritos em uma página simples e organizada.</p>
+        <div class="hero-actions">
+          <button class="primary" id="heroAdd"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-plus"/></svg> Adicionar link</button>
+          <a class="secondary" href="https://github.com/lohanrosha02-gif?tab=repositories" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-code"/></svg> Meu GitHub</a>
+        </div>
+      </section>
+      <section class="metrics" aria-label="Resumo">
+        <div class="metric"><strong id="repoCount">6</strong><span>Repositórios</span></div>
+        <div class="metric"><strong id="siteCount">—</strong><span>Sites vinculados</span></div>
+        <div class="metric"><strong id="extraCount">0</strong><span>Links extras</span></div>
+      </section>
+      <section id="projectSection" aria-label="Projetos">
+        <div class="section-head"><div><h2 id="sectionTitle">Seus projetos</h2><p id="sectionSub">Encontre tudo rapidamente</p></div><div class="sync-state" aria-live="polite"><span class="sync-dot" id="syncDot"></span><span id="syncText">Carregando GitHub...</span></div></div>
+        <div class="toolbar">
+          <div class="tabs" id="tabs">
+            <button class="tab active" data-filter="todos">Todos</button>
+            <button class="tab" data-filter="sites">Sites</button>
+            <button class="tab" data-filter="repos">Repositórios</button>
+            <button class="tab" data-filter="extras">Meus links</button>
+          </div>
+          <div class="search-wrap"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-search"/></svg><label class="sr-only" for="search">Pesquisar projetos</label><input class="search" id="search" placeholder="Buscar por nome ou assunto..." autocomplete="off"></div>
+        </div>
+        <div class="grid" id="projectGrid" aria-live="polite"></div>
+      </section>
+      <section class="custom-block" id="customSection">
+        <div class="section-head">
+          <div><h2>Meus links personalizados</h2><p>Salvos neste navegador; não exigem login.</p></div>
+          <button class="primary tiny" id="addBtn"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-plus"/></svg> Novo link</button>
+        </div>
+        <div class="grid" id="customGrid"></div>
+        <div class="custom-actions" style="margin-top:16px">
+          <button class="secondary tiny" id="exportBtn">Exportar meus links</button>
+          <button class="secondary tiny" id="importBtn">Importar backup</button>
+          <a class="secondary tiny" href="https://github.com/lohanrosha02-gif/links/edit/main/links.json" target="_blank" rel="noopener noreferrer">Editar links públicos ↗</a>
+          <input type="file" id="importFile" hidden accept=".json,application/json">
+        </div>
+      </section>
+      <div class="help-strip"><div><h3>Sincronização automática do GitHub</h3><p>Novos repositórios públicos entram na página sozinhos. O botão atualizar busca novidades na hora. Para compartilhar links adicionados entre dispositivos, edite o arquivo links.json no GitHub.</p></div><a href="https://github.com/lohanrosha02-gif/links" target="_blank" rel="noopener noreferrer">Gerenciar ↗</a></div>
+      <footer>Central de Links · Feito para reunir meus projetos · Atualização automática quando a página está aberta</footer>
+    </main>
+  </div>
+  <dialog id="linkDialog">
+    <div class="modal-head"><h2 id="dialogTitle">Adicionar um link</h2><button class="icon-btn" id="closeModal" aria-label="Fechar"><svg fill="none" stroke="currentColor" stroke-width="2"><use href="#i-close"/></svg></button></div>
+    <form id="linkForm" class="modal-body">
+      <input type="hidden" id="linkRepo" value="">
+      <label for="linkName">Nome</label><input id="linkName" required maxlength="72" placeholder="Ex.: Meu portfólio">
+      <label for="linkUrl">Endereço (URL)</label><input id="linkUrl" type="url" required placeholder="https://exemplo.com">
+      <div id="extraFields"><label for="linkDesc">Descrição (opcional)</label><input id="linkDesc" maxlength="160" placeholder="Para que serve esse link?"><label for="linkCategory">Tipo</label><select id="linkCategory"><option value="site">Site / aplicativo</option><option value="outro">Outro link</option></select></div>
+      <p class="modal-note" id="modalNote">Este link ficará salvo no navegador atual. Para disponibilizá-lo a todos, use “Editar links públicos”.</p>
+      <div class="modal-actions"><button type="button" class="secondary tiny" id="cancelModal">Cancelar</button><button type="submit" class="primary tiny">Salvar link</button></div>
+    </form>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script>
+    "use strict";
+    const USER="lohanrosha02-gif";
+    const STORAGE="meus-links-v2-"+USER;
+    const FALLBACK_NAMES=["lobi-lifestyle","lobi-admin","MeuEstudo","rifa-isaac","controle-gastos","links"];
+    const DETAILS={
+      "lobi-lifestyle":{label:"LOBI Lifestyle",description:"Loja e vitrine de roupas.",color:"green",icon:"LO"},
+      "lobi-admin":{label:"LOBI Admin",description:"Painel de administração da loja.",color:"gray",icon:"AD"},
+      "MeuEstudo":{label:"Meu Estudo",description:"Plataforma de estudos, teoria e questões.",color:"blue",icon:"ME"},
+      "rifa-isaac":{label:"Rifa Isaac",description:"Projeto da rifa Isaac.",color:"gold",icon:"RI"},
+      "controle-gastos":{label:"Controle de Gastos",description:"Organização e controle financeiro.",color:"teal",icon:"R$"},
+      "links":{label:"Central de Links",description:"Esta página de acesso aos meus projetos.",color:"purple",icon:"LK"}
+    };
+    const $=s=>document.querySelector(s);
+    let filter="todos", query="", repos=[],cloudLinks=[],cloudSites={}, loading=false, cloudOk=false;
+    const defaults=()=>({links:[],sites:{}});
+    function readStore(){try{const x=JSON.parse(localStorage.getItem(STORAGE)||"{}");return {links:Array.isArray(x.links)?x.links:[],sites:x.sites&&typeof x.sites==="object"?x.sites:{}}}catch(e){return defaults()}}
+    let local=readStore();
+    function save(){try{localStorage.setItem(STORAGE,JSON.stringify(local));return true}catch(e){notify("Não foi possível salvar neste navegador.");return false}}
+    function cleanUrl(value){try{const u=new URL(String(value).trim());return ["https:","http:"].includes(u.protocol)?u.href:""}catch(e){return ""}}
+    function svg(id){const el=document.createElementNS("http://www.w3.org/2000/svg","svg");el.setAttribute("fill","none");el.setAttribute("stroke","currentColor");el.setAttribute("stroke-width","2");const use=document.createElementNS("http://www.w3.org/2000/svg","use");use.setAttribute("href","#i-"+id);el.append(use);return el}
+    function el(tag,klass,txt){const x=document.createElement(tag);if(klass)x.className=klass;if(txt!==undefined)x.textContent=txt;return x}
+    function appendLink(parent,label,url,klass){const valid=cleanUrl(url);if(!valid)return null;const a=el("a",klass||"card-link");a.textContent=label;a.href=valid;a.target="_blank";a.rel="noopener noreferrer";a.appendChild(svg("external"));parent.appendChild(a);return a}
+    function notify(message){const t=$("#toast");t.textContent=message;t.classList.add("show");clearTimeout(notify.t);notify.t=setTimeout(()=>t.classList.remove("show"),3400)}
+    function siteFor(repo){const name=repo.name;const localSite=cleanUrl(local.sites[name]);if(localSite)return localSite;const shared=cleanUrl(cloudSites[name]);if(shared)return shared;const homepage=cleanUrl(repo.homepage);if(homepage){try{const host=new URL(homepage).hostname;if(!["github.com","www.github.com","api.github.com"].includes(host))return homepage}catch(e){}}
+      if(repo.has_pages)return "https://"+USER+".github.io/"+(name.toLowerCase()===USER.toLowerCase()+".github.io"?"":encodeURIComponent(name)+"/");return ""}
+    function publicReposFallback(){return FALLBACK_NAMES.map(name=>({name:name,html_url:"https://github.com/"+USER+"/"+name,description:"",homepage:"",has_pages:false,stargazers_count:0}))}
+    function filtered(text){return !query||String(text).toLocaleLowerCase("pt-BR").includes(query)}
+    function badgeFor(i){return i==="outro"?"LINK":"SITE"}
+    function makeRepoCard(repo,index){const known=DETAILS[repo.name]||{};const site=siteFor(repo);const card=el("article","project");const top=el("div","card-top");const icon=el("div","app-icon "+(known.color||["green","blue","purple","gold","teal"][index%5]),known.icon||repo.name.slice(0,2).toUpperCase());const tag=el("span","tag"+(site?" site":""),site?"SITE + CÓDIGO":"REPOSITÓRIO");top.append(icon,tag);
+      const body=el("div");body.append(el("h3","",known.label||repo.name.replace(/[-_]/g," ")));body.append(el("p","desc",repo.description||known.description||"Projeto disponível no meu GitHub."));
+      const foot=el("div","card-foot");if(site)appendLink(foot,"Abrir site",site,"card-link highlight");appendLink(foot,"Repositório",repo.html_url||"https://github.com/"+USER+"/"+repo.name,"card-link");const edit=el("button","text-button",site?"Editar site ↗":"Associar site +");edit.type="button";edit.addEventListener("click",()=>openModal(repo.name,site));foot.append(edit);card.append(top,body,foot);return card}
+    function makeExtraCard(item){const url=cleanUrl(item.url);if(!url)return null;const card=el("article","project");const top=el("div","card-top");top.append(el("div","app-icon "+(item.category==="outro"?"purple":"blue"),item.category==="outro"?"↗":"WWW"),el("span","tag"+(item.category==="site"?" site":""),badgeFor(item.category)));card.append(top);
+      const body=el("div");body.append(el("h3","",item.title||"Link"));body.append(el("p","desc",item.description||url));card.append(body);
+      const foot=el("div","card-foot");appendLink(foot,"Abrir link",url,"card-link highlight");
+      if(item.local){const remove=el("button","text-button","Excluir");remove.type="button";remove.addEventListener("click",()=>{if(!confirm("Excluir este link deste navegador?"))return;local.links=local.links.filter(x=>x.id!==item.id);save();render();notify("Link excluído.");});foot.append(remove)}
+      card.append(foot);return card}
+    function allExtras(){const seen=new Set();return [...cloudLinks.map(x=>({...x,local:false})),...local.links.map(x=>({...x,local:true}))].filter(x=>{const valid=cleanUrl(x.url);if(!valid||seen.has(valid))return false;seen.add(valid);return true})}
+    function render(){
+      const extras=allExtras();const allRepoCount=repos.length;const siteCount=repos.filter(r=>siteFor(r)).length;$("#repoCount").textContent=String(allRepoCount);$("#siteCount").textContent=String(siteCount);$("#extraCount").textContent=String(extras.length);
+      document.querySelectorAll("[data-filter]").forEach(b=>{const on=b.dataset.filter===filter;b.classList.toggle("active",on);if(on)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
+      const titleMap={todos:"Seus projetos",sites:"Sites e aplicativos",repos:"Repositórios GitHub",extras:"Links adicionados"};$("#sectionTitle").textContent=titleMap[filter];
+      $("#sectionSub").textContent=filter==="sites"?"Sites vinculados aos projetos e seus links de site":filter==="repos"?"Repositórios públicos atualizados pelo GitHub":filter==="extras"?"Links externos que você adicionou":"Encontre tudo rapidamente";
+      const main=$("#projectGrid");main.replaceChildren();
+      const visibleRepos=repos.filter(r=>(filter==="todos"||filter==="repos"||(filter==="sites"&&!!siteFor(r)))&&filtered(r.name+" "+(r.description||"")+" "+(DETAILS[r.name]?.label||"")));
+      const visibleExtras=extras.filter(x=>(filter==="todos"||filter==="extras"||(filter==="sites"&&x.category==="site"))&&filtered(x.title+" "+x.description+" "+x.url));
+      visibleRepos.forEach((r,i)=>main.append(makeRepoCard(r,i)));visibleExtras.forEach(x=>{const c=makeExtraCard(x);if(c)main.append(c)});
+      if(!main.children.length){const e=el("div","empty");e.append(el("strong","","Nenhum resultado por aqui."),el("p","","Experimente outra busca ou adicione um novo link."));main.append(e)}
+      const personal=$("#customGrid");personal.replaceChildren();const allLocal=local.links.filter(x=>filtered(x.title+" "+x.description));allLocal.forEach(x=>{const card=makeExtraCard({...x,local:true});if(card)personal.append(card)});if(!allLocal.length){const box=el("div","empty");box.append(el("strong","","Seu espaço está livre."),el("p","","Clique em Novo link para guardar um endereço personalizado."));personal.append(box)}
+      $("#customSection").style.display=filter==="sites"||filter==="repos"?"none":"block";
+    }
+    function openModal(repoName="",currentUrl=""){$("#linkForm").reset();$("#linkRepo").value=repoName;$("#dialogTitle").textContent=repoName?"Associar site ao repositório":"Adicionar um link";$("#linkName").value=repoName?DETAILS[repoName]?.label||repoName:"";$("#linkName").readOnly=!!repoName;$("#linkUrl").value=currentUrl;$("#extraFields").hidden=!!repoName;$("#modalNote").textContent=repoName?"O endereço ficará salvo neste navegador. Para torná-lo público, adicione o mesmo endereço na seção sites do arquivo links.json no GitHub.":"Este link ficará salvo neste navegador. Para disponibilizá-lo a todos, use Editar links públicos.";$("#linkDialog").showModal();$("#linkUrl").focus()}
+    function closeModal(){$("#linkDialog").close()}
+    function addLink(e){e.preventDefault();const url=cleanUrl($("#linkUrl").value);if(!url){notify("Insira um link válido começando com https://.");return}const repoName=$("#linkRepo").value;if(repoName){local.sites[repoName]=url;save();notify("Site associado neste navegador.");}else{const title=$("#linkName").value.trim();if(!title)return;local.links.unshift({id:String(Date.now())+"-"+Math.random().toString(36).slice(2,7),title:title,url:url,description:$("#linkDesc").value.trim(),category:$("#linkCategory").value});save();notify("Link adicionado!");}closeModal();render()}
+    async function getJson(url){const res=await fetch(url,{cache:"no-store",headers:{"Accept":"application/vnd.github+json"}});if(!res.ok)throw new Error("HTTP "+res.status);return res.json()}
+    async function loadCloud(){try{const json=await getJson("./links.json");cloudLinks=Array.isArray(json.links)?json.links.filter(x=>x&&typeof x.title==="string"&&cleanUrl(x.url)).map(x=>({title:x.title,url:x.url,description:String(x.description||""),category:x.category==="outro"?"outro":"site"})):[];cloudSites=json.sites&&typeof json.sites==="object"&&!Array.isArray(json.sites)?json.sites:{};}catch(e){cloudLinks=[];cloudSites={};}}
+    async function sync(){if(loading)return;loading=true;$("#syncBtn").disabled=true;$("#syncText").textContent="Sincronizando...";$("#syncDot").classList.remove("error");try{
+      await loadCloud();
+      const found=[];for(let page=1;page<=10;page++){const data=await getJson("https://api.github.com/users/"+encodeURIComponent(USER)+"/repos?per_page=100&page="+page+"&sort=updated&direction=desc");if(!Array.isArray(data))throw new Error("Resposta inválida do GitHub");found.push(...data.filter(x=>!x.private&&!x.fork));if(data.length<100)break}
+      repos=found;cloudOk=true;const stamp=new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});$("#syncText").textContent="Atualizado às "+stamp;try{localStorage.setItem(STORAGE+"-cache",JSON.stringify(found))}catch(e){}
+    }catch(err){cloudOk=false;try{const cached=JSON.parse(localStorage.getItem(STORAGE+"-cache")||"null");repos=Array.isArray(cached)?cached:publicReposFallback()}catch(e){repos=publicReposFallback()}$("#syncDot").classList.add("error");$("#syncText").textContent="Exibindo dados salvos";console.warn("Sincronização indisponível:",err)}
+      finally{loading=false;$("#syncBtn").disabled=false;render()}}
+    function exportData(){const data={links:local.links,sites:local.sites};const file=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const href=URL.createObjectURL(file);const a=document.createElement("a");a.href=href;a.download="meus-links-backup.json";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(href),2500);notify("Backup exportado.")}
+    function importData(e){const file=e.target.files?.[0];if(!file)return;file.text().then(t=>{const obj=JSON.parse(t);if(!obj||!Array.isArray(obj.links))throw Error("Formato inválido");const incoming=obj.links.slice(0,300).filter(x=>x&&cleanUrl(x.url)&&typeof x.title==="string").map(x=>({id:String(x.id||Date.now()+Math.random()),title:x.title.slice(0,72),url:cleanUrl(x.url),description:String(x.description||"").slice(0,160),category:x.category==="outro"?"outro":"site"}));const old=new Set(local.links.map(x=>x.url));incoming.forEach(x=>{if(!old.has(x.url)){local.links.push(x);old.add(x.url)}});if(obj.sites&&typeof obj.sites==="object")Object.entries(obj.sites).forEach(([k,v])=>{if(cleanUrl(v))local.sites[k]=cleanUrl(v)});save();render();notify("Backup importado.");}).catch(()=>notify("Arquivo inválido. Use um backup JSON exportado aqui.")).finally(()=>e.target.value="")}
+    document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.filter;render();$("#projectSection").scrollIntoView({behavior:"smooth",block:"start"})}));
+    $("#search").addEventListener("input",e=>{query=e.target.value.trim().toLocaleLowerCase("pt-BR");render()});
+    ["#heroAdd","#addBtn"].forEach(id=>$(id).addEventListener("click",()=>openModal()));
+    $("#syncBtn").addEventListener("click",sync);
+    $("#linkForm").addEventListener("submit",addLink);
+    ["#closeModal","#cancelModal"].forEach(id=>$(id).addEventListener("click",closeModal));
+    $("#linkDialog").addEventListener("click",e=>{if(e.target===$("#linkDialog"))closeModal()});
+    $("#exportBtn").addEventListener("click",exportData);
+    $("#importBtn").addEventListener("click",()=>$("#importFile").click());
+    $("#importFile").addEventListener("change",importData);
+    repos=publicReposFallback();render();sync();
+    setInterval(()=>{if(!document.hidden)sync()},5*60*1000);
+    document.addEventListener("visibilitychange",()=>{if(!document.hidden&&cloudOk)sync()});
+  </script>
+</body>
+</html>
