@@ -228,7 +228,7 @@ dialog{background:#fff;color:#1a271c;border-color:#dce7d8;box-shadow:0 26px 85px
       "links":{label:"Central de Links",description:"Esta página de acesso aos meus projetos.",color:"purple",icon:"LK"}
     };
     const $=s=>document.querySelector(s);
-    let filter="todos", query="", repos=[],cloudLinks=[],cloudSites={}, loading=false, cloudOk=false;
+    let filter="todos", query="", repos=[],cloudLinks=[],cloudSites={},pagesUrls={},lastPagesLookup=0, loading=false, cloudOk=false;
     const defaults=()=>({links:[],sites:{}});
     function readStore(){try{const x=JSON.parse(localStorage.getItem(STORAGE)||"{}");return {links:Array.isArray(x.links)?x.links:[],sites:x.sites&&typeof x.sites==="object"?x.sites:{}}}catch(e){return defaults()}}
     let local=readStore();
@@ -238,7 +238,7 @@ dialog{background:#fff;color:#1a271c;border-color:#dce7d8;box-shadow:0 26px 85px
     function el(tag,klass,txt){const x=document.createElement(tag);if(klass)x.className=klass;if(txt!==undefined)x.textContent=txt;return x}
     function appendLink(parent,label,url,klass){const valid=cleanUrl(url);if(!valid)return null;const a=el("a",klass||"card-link");a.textContent=label;a.href=valid;a.target="_blank";a.rel="noopener noreferrer";a.appendChild(svg("external"));parent.appendChild(a);return a}
     function notify(message){const t=$("#toast");t.textContent=message;t.classList.add("show");clearTimeout(notify.t);notify.t=setTimeout(()=>t.classList.remove("show"),3400)}
-    function siteFor(repo){const name=repo.name;const localSite=cleanUrl(local.sites[name]);if(localSite)return localSite;const shared=cleanUrl(cloudSites[name]);if(shared)return shared;const homepage=cleanUrl(repo.homepage);if(homepage){try{const host=new URL(homepage).hostname;if(!["github.com","www.github.com","api.github.com"].includes(host))return homepage}catch(e){}}
+    function siteFor(repo){const name=repo.name;const localSite=cleanUrl(local.sites[name]);if(localSite)return localSite;const livePages=cleanUrl(pagesUrls[name]);if(livePages)return livePages;const shared=cleanUrl(cloudSites[name]);if(shared)return shared;const homepage=cleanUrl(repo.homepage);if(homepage){try{const host=new URL(homepage).hostname;if(!["github.com","www.github.com","api.github.com"].includes(host))return homepage}catch(e){}}
       return ""}
     function publicReposFallback(){return FALLBACK_NAMES.map(name=>({name:name,html_url:"https://github.com/"+USER+"/"+name,description:"",homepage:"",has_pages:false,stargazers_count:0}))}
     function filtered(text){return !query||String(text).toLocaleLowerCase("pt-BR").includes(query)}
@@ -273,7 +273,21 @@ dialog{background:#fff;color:#1a271c;border-color:#dce7d8;box-shadow:0 26px 85px
     async function sync(){if(loading)return;loading=true;$("#syncBtn").disabled=true;$("#syncText").textContent="Sincronizando...";$("#syncDot").classList.remove("error");try{
       await loadCloud();
       const found=[];for(let page=1;page<=10;page++){const data=await getJson("https://api.github.com/users/"+encodeURIComponent(USER)+"/repos?per_page=100&page="+page+"&sort=updated&direction=desc");if(!Array.isArray(data))throw new Error("Resposta inválida do GitHub");found.push(...data.filter(x=>!x.private&&!x.fork));if(data.length<100)break}
-      repos=found;cloudOk=true;const stamp=new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});$("#syncText").textContent="Atualizado às "+stamp;try{localStorage.setItem(STORAGE+"-cache",JSON.stringify(found))}catch(e){}
+      repos=found;cloudOk=true;
+      // Descobrir endereços reais do GitHub Pages, inclusive domínios próprios, sem adivinhar URLs.
+      // Executar no máximo uma vez por hora para preservar o limite público da API do GitHub.
+      if(Date.now()-lastPagesLookup>60*60*1000){
+        lastPagesLookup=Date.now();
+        const pagesToCheck=found.filter(r=>r.has_pages).slice(0,30);
+        const checks=await Promise.allSettled(pagesToCheck.map(r=>getJson("https://api.github.com/repos/"+encodeURIComponent(USER)+"/"+encodeURIComponent(r.name)+"/pages")));
+        checks.forEach((result,i)=>{
+          if(result.status==="fulfilled"){
+            const url=cleanUrl(result.value?.html_url);
+            if(url)pagesUrls[pagesToCheck[i].name]=url;
+          }
+        });
+      }
+      const stamp=new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});$("#syncText").textContent="Atualizado às "+stamp;try{localStorage.setItem(STORAGE+"-cache",JSON.stringify(found))}catch(e){}
     }catch(err){cloudOk=false;try{const cached=JSON.parse(localStorage.getItem(STORAGE+"-cache")||"null");repos=Array.isArray(cached)?cached:publicReposFallback()}catch(e){repos=publicReposFallback()}$("#syncDot").classList.add("error");$("#syncText").textContent="Exibindo dados salvos";console.warn("Sincronização indisponível:",err)}
       finally{loading=false;$("#syncBtn").disabled=false;render()}}
     function exportData(){const data={links:local.links,sites:local.sites};const file=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const href=URL.createObjectURL(file);const a=document.createElement("a");a.href=href;a.download="meus-links-backup.json";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(href),2500);notify("Backup exportado.")}
