@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0c0f11">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="Central de links, sites e projetos do GitHub.">
   <title>Meus Links | Central de Projetos</title>
   <style>
@@ -58,6 +58,66 @@
     @media(max-width:1100px){.layout{grid-template-columns:190px 1fr}.sidebar{padding:27px 15px}.main{padding:27px 28px 44px}.grid{gap:12px}}
     @media(max-width:760px){.layout{display:block}.sidebar{position:static;border-right:0;border-bottom:1px solid var(--border);padding:15px 18px;gap:11px}.brand{font-size:14px}.brand-mark{width:35px;height:35px;border-radius:10px}.side-label,.sidebar-bottom{display:none}.nav{display:flex;gap:4px;overflow:auto}.nav-button{padding:9px 12px;font-size:12px;white-space:nowrap}.nav-button svg{width:15px;height:15px}.main{padding:20px 17px 40px}.topline{margin-bottom:20px}.metrics{gap:8px;margin:14px 0 28px}.metric{padding:14px 12px}.metric strong{font-size:23px}.metric span{font-size:10px}.hero{padding:25px 23px}.hero p{font-size:12px}.hero h1{letter-spacing:-1.4px}.toolbar{flex-direction:column-reverse}.search-wrap{max-width:none;width:100%;flex:auto}.tabs{align-self:stretch;justify-content:space-between}.tab{padding:9px 10px}.grid{grid-template-columns:1fr}.help-strip{align-items:flex-start;flex-direction:column}.section-head h2{font-size:20px}.project{padding:19px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  
+/* TEMA BRANCO UNIFICADO | 20 de outubro 2026 */
+:root{color-scheme:light;--bg:#fff;--panel:#fff;--panel2:#f5f8f3;--border:#e0e9de;--text:#1a271c;--muted:#62746a;--lime:#c0f16e;--shadow:0 15px 45px rgba(28,54,31,.075)}
+body{background:#fff;color:#1a271c}
+.sidebar{background:#fff;border-color:#e0e9de}
+.brand-mark,.primary{background:#c0f16e;color:#192914}
+.side-label,.breadcrumb,.metric span,.section-head p,.sync-state,footer{color:#637569}
+.sidebar-bottom,.metric,.project,.icon-btn,.search,.tabs{background:#fff;border-color:#e0e9de;color:#1a271c}
+.side-avatar,.app-icon.green,.app-icon.teal{background:#edf7e6;color:#37632c}
+.nav-button{color:#596d61}
+.nav-button:hover{background:#eef6eb;color:#1b2a1d}
+.nav-button.active,.tab.active{background:#eaf7de;color:#426c2b}
+.sidebar-bottom p{color:#637569}
+.sidebar-bottom p strong,.breadcrumb span{color:#1a271c!important}
+.side-link,.help-strip a,.text-button{color:#426c2b}
+.icon-btn{color:#35483a}
+.icon-btn:hover{background:#eff6ed}
+.hero{background:linear-gradient(115deg,#f2f9ed 0%,#fff 80%);border-color:#d9ebd0}
+.hero:before{background:radial-gradient(circle,rgba(168,220,93,.16),transparent 70%)}
+.eyebrow{color:#4e7e32}
+.eyebrow:before{background:#78aa4a}
+.hero h1{color:#17251b}
+.hero h1 em{color:#56862c}
+.hero p{color:#58695f}
+.secondary{background:#fff;border-color:#d5e2d2;color:#283b2c}
+.secondary:hover{background:#f1f7ee}
+.primary:hover{background:#dcffae}
+.metric strong,.project h3,.section-head h2{color:#17251b}
+.sync-dot{background:#74b84d}
+.tab{color:#6b7c70}
+.tab:hover:not(.active){color:#213423}
+.search{background:#fff;color:#1a271c}
+.search::placeholder{color:#84958b}
+.search-wrap svg{color:#748578}
+.project:hover{border-color:#b4d3a1}
+.app-icon.blue{background:#eaf1ff;color:#4466a0}
+.app-icon.gold{background:#fff5e3;color:#976c26}
+.app-icon.purple{background:#f0eafa;color:#7562a2}
+.app-icon.gray{background:#edf0ef;color:#56645a}
+.tag{color:#64766a;border-color:#e0e9de}
+.tag.site{color:#4d7737;background:#edf7e6;border-color:#cadfc1}
+.project .desc{color:#64766a}
+.card-link{background:#f7faf6;border-color:#dce7d9;color:#253829}
+.card-link:hover{background:#eef5ec}
+.card-link.highlight{background:#c0f16e;border-color:#a7da58;color:#192914}
+.card-link.highlight:hover{background:#ddffad}
+.destination{margin:-6px 0 0;font-size:11px;color:#567e4b;overflow-wrap:anywhere}
+.empty{border-color:#d9e7d6}
+.empty strong{color:#203322}
+.custom-block{border-color:#e2e9df}
+.help-strip{background:#f5faf1;border-color:#dcebd4}
+.help-strip h3{color:#243728}
+.help-strip p{color:#627369}
+dialog{background:#fff;color:#1a271c;border-color:#dce7d8;box-shadow:0 26px 85px rgba(38,61,36,.16)}
+.modal-body label{color:#283a2c}
+.modal-body input,.modal-body select{background:#fff;color:#1b2b1d;border-color:#ccdcca}
+.modal-body input::placeholder{color:#8b9a90}
+.modal-note{color:#617367}
+#toast{background:#edf8e5;color:#25492b;border-color:#cde4be;box-shadow:0 8px 32px rgba(40,72,37,.09)}
+
   </style>
 </head>
 <body>
@@ -179,12 +239,12 @@
     function appendLink(parent,label,url,klass){const valid=cleanUrl(url);if(!valid)return null;const a=el("a",klass||"card-link");a.textContent=label;a.href=valid;a.target="_blank";a.rel="noopener noreferrer";a.appendChild(svg("external"));parent.appendChild(a);return a}
     function notify(message){const t=$("#toast");t.textContent=message;t.classList.add("show");clearTimeout(notify.t);notify.t=setTimeout(()=>t.classList.remove("show"),3400)}
     function siteFor(repo){const name=repo.name;const localSite=cleanUrl(local.sites[name]);if(localSite)return localSite;const shared=cleanUrl(cloudSites[name]);if(shared)return shared;const homepage=cleanUrl(repo.homepage);if(homepage){try{const host=new URL(homepage).hostname;if(!["github.com","www.github.com","api.github.com"].includes(host))return homepage}catch(e){}}
-      if(repo.has_pages)return "https://"+USER+".github.io/"+(name.toLowerCase()===USER.toLowerCase()+".github.io"?"":encodeURIComponent(name)+"/");return ""}
+      return ""}
     function publicReposFallback(){return FALLBACK_NAMES.map(name=>({name:name,html_url:"https://github.com/"+USER+"/"+name,description:"",homepage:"",has_pages:false,stargazers_count:0}))}
     function filtered(text){return !query||String(text).toLocaleLowerCase("pt-BR").includes(query)}
     function badgeFor(i){return i==="outro"?"LINK":"SITE"}
     function makeRepoCard(repo,index){const known=DETAILS[repo.name]||{};const site=siteFor(repo);const card=el("article","project");const top=el("div","card-top");const icon=el("div","app-icon "+(known.color||["green","blue","purple","gold","teal"][index%5]),known.icon||repo.name.slice(0,2).toUpperCase());const tag=el("span","tag"+(site?" site":""),site?"SITE + CÓDIGO":"REPOSITÓRIO");top.append(icon,tag);
-      const body=el("div");body.append(el("h3","",known.label||repo.name.replace(/[-_]/g," ")));body.append(el("p","desc",repo.description||known.description||"Projeto disponível no meu GitHub."));
+      const body=el("div");body.append(el("h3","",known.label||repo.name.replace(/[-_]/g," ")));body.append(el("p","desc",repo.description||known.description||"Projeto disponível no meu GitHub."));body.append(el("p","destination",site?site.replace(/^https?:\/\//,""):"Site ainda não cadastrado"));
       const foot=el("div","card-foot");if(site)appendLink(foot,"Abrir site",site,"card-link highlight");appendLink(foot,"Repositório",repo.html_url||"https://github.com/"+USER+"/"+repo.name,"card-link");const edit=el("button","text-button",site?"Editar site ↗":"Associar site +");edit.type="button";edit.addEventListener("click",()=>openModal(repo.name,site));foot.append(edit);card.append(top,body,foot);return card}
     function makeExtraCard(item){const url=cleanUrl(item.url);if(!url)return null;const card=el("article","project");const top=el("div","card-top");top.append(el("div","app-icon "+(item.category==="outro"?"purple":"blue"),item.category==="outro"?"↗":"WWW"),el("span","tag"+(item.category==="site"?" site":""),badgeFor(item.category)));card.append(top);
       const body=el("div");body.append(el("h3","",item.title||"Link"));body.append(el("p","desc",item.description||url));card.append(body);
