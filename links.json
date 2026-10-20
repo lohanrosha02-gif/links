@@ -1,6 +1,11 @@
 {
   "sites": {
-    "lobi-lifestyle": "https://lobilifestyle.pages.dev/"
+    "lobi-lifestyle": "https://lobilifestyle.pages.dev/",
+    "lobi-admin": "https://lohanrosha02-gif.github.io/lobi-admin/",
+    "MeuEstudo": "https://lohanrosha02-gif.github.io/MeuEstudo/",
+    "rifa-isaac": "https://lohanrosha02-gif.github.io/rifa-isaac/",
+    "controle-gastos": "https://lohanrosha02-gif.github.io/controle-gastos/",
+    "links": "https://lohanrosha02-gif.github.io/links/"
   },
   "links": []
 }
